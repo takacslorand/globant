@@ -1,7 +1,7 @@
 package com.globant.got.client.controller;
 
-import com.globant.got.client.model.Book;
-import com.globant.got.client.service.BookService;
+import com.globant.got.client.model.GoTCharacter;
+import com.globant.got.client.service.GoTCharacterService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,17 +13,17 @@ import java.util.Map;
 
 @RestController
 @AllArgsConstructor
-public class BookController {
+public class GoTCharacterController {
 
-    private BookService service;
+    private final GoTCharacterService service;
 
-    @GetMapping("/books")
-    public List<Book> getBooks(@RequestParam(required = false) Map<String, String> queryParams) {
+    @GetMapping("/characters")
+    public List<GoTCharacter> characters(@RequestParam(required = false) Map<String, String> queryParams) {
         return service.all(queryParams);
     }
 
-    @GetMapping("/books/{id}")
-    public Book getBook(@PathVariable("id") int id) {
+    @GetMapping("/characters/{id}")
+    public GoTCharacter character(@PathVariable("id") int id) {
         return service.one(id);
     }
 }

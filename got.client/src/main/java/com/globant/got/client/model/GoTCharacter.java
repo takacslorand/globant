@@ -3,7 +3,7 @@ package com.globant.got.client.model;
 import lombok.Data;
 
 @Data
-public class Character {
+public class GoTCharacter {
 
     String url;             //The hypermedia URL of this resource
     String name;            //The name of this character

@@ -1,9 +1,10 @@
 package com.globant.got.client.controller;
 
-import com.globant.got.client.feign.client.HouseClient;
 import com.globant.got.client.model.House;
-import org.springframework.beans.factory.annotation.Value;
+import com.globant.got.client.service.HouseService;
+import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -11,24 +12,17 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
+@AllArgsConstructor
 public class HouseController {
-
-    @Value("${globant.client.host.url}")
-    private String url;
-
-    private final HouseClient client;
-
-    public HouseController(HouseClient client) {
-        this.client = client;
-    }
+    private final HouseService service;
 
     @GetMapping("/houses")
-    public List<House> getBooks(@RequestParam(required=false) Map<String,String> queryParams) {
-        return client.all(queryParams);
+    public List<House> houses(@RequestParam(required = false) Map<String, String> queryParams) {
+        return service.all(queryParams);
     }
 
     @GetMapping("/houses/{id}")
-    public House getBook(@RequestParam("id") int id) {
-        return client.one(id);
+    public House house(@PathVariable("id") int id) {
+        return service.one(id);
     }
 }
