@@ -15,9 +15,9 @@ import java.util.Map;
 @FeignClient(name = "houses-client", url = "${globant.client.host.url}", configuration = FeignConfig.class)
 public interface HouseClient {
 
-    @RequestMapping(value = "/characters", method = RequestMethod.GET)
+    @RequestMapping(value = "/houses", method = RequestMethod.GET)
     List<House> all(@SpringQueryMap Map<String, String> queryParams);
 
-    @RequestMapping(value = "/characters/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/houses/{id}", method = RequestMethod.GET)
     House one(@PathVariable(name = "id") int id);
 }
