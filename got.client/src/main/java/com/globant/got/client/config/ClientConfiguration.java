@@ -1,5 +1,6 @@
 package com.globant.got.client.config;
 
+import com.globant.got.client.feign.client.error.HandlingFeignErrorDecoder;
 import feign.Logger;
 import feign.codec.ErrorDecoder;
 import feign.okhttp.OkHttpClient;
@@ -12,11 +13,6 @@ public class ClientConfiguration {
     @Bean
     public Logger.Level feignLoggerLevel() {
         return Logger.Level.FULL;
-    }
-
-    @Bean
-    public ErrorDecoder errorDecoder() {
-        return new ErrorDecoder.Default();
     }
 
     @Bean

@@ -1,6 +1,8 @@
 package com.globant.got.client.feign.client;
 
 import com.globant.got.client.config.FeignConfig;
+import com.globant.got.client.feign.client.error.FeignClientExceptionHandler;
+import com.globant.got.client.feign.client.error.HandleFeignException;
 import com.globant.got.client.model.House;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.cloud.openfeign.SpringQueryMap;
@@ -15,8 +17,10 @@ import java.util.Map;
 public interface HouseClient {
 
     @RequestMapping(value = "/houses", method = RequestMethod.GET)
+    @HandleFeignException(FeignClientExceptionHandler.class)
     List<House> all(@SpringQueryMap Map<String, String> queryParams);
 
     @RequestMapping(value = "/houses/{id}", method = RequestMethod.GET)
+    @HandleFeignException(FeignClientExceptionHandler.class)
     House one(@PathVariable(name = "id") int id);
 }
